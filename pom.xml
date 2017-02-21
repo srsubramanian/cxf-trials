@@ -2,13 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.apache.cxf.samples</groupId>
-        <artifactId>cxf-samples</artifactId>
-        <version>3.2.0-SNAPSHOT</version>
-        <relativePath>..</relativePath>
-    </parent>
+
+    <groupId>org.srs.cxf.samples</groupId>
     <artifactId>spring-boot-sample-ws-cxf</artifactId>
+    <version>3.2.0-SNAPSHOT</version>
+
     <name>Spring Boot CXF Web Services Sample</name>
     <description>Spring Boot CXF Web Services Sample</description>
     <dependencyManagement>
@@ -17,7 +15,7 @@
                 <!-- Import dependency management from Spring Boot -->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>1.5.1.RELEASE</version>
+                <version>1.4.4.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -27,17 +25,17 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <version>1.5.1.RELEASE</version>
+            <version>1.4.4.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web-services</artifactId>
-            <version>1.4.0.RELEASE</version>
+            <artifactId>spring-boot-starter-ws</artifactId>
+            <version>1.4.4.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
-            <version>3.1.7</version>
+            <version>3.1.10</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -62,25 +60,6 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>0.4.9</version>
-                <configuration>
-                    <imageName>${project.groupId}/${project.artifactId}</imageName>
-                    <baseImage>frolvlad/alpine-oraclejdk8:slim</baseImage>
-                    <entryPoint>java -Djava.security.egd=file:/dev/./urandom -jar
-                        ${project.build.finalName}.jar
-                    </entryPoint>
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 </project>
